@@ -59,6 +59,9 @@ use Twilio\Rest\Client;
 */
 Auth::routes();
 
+Route::get('/welcome',function(){
+    return view('welcome');
+});
 Route::get('/test_notification',[WebsiteController::class,'testNotification']);
 Route::get('/send-test-email', function () {
     Mail::to('abdulhadijatoi@gmail.com')->send(new TestMail('test1','test2','test3'));
