@@ -2,31 +2,46 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasRoles,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'phone',
+        'phone_code',
+        'image',
+        'verify',
+        'otp',
+        'dob',
+        'gender',
+        'image',
+        'doctor_id',
+        'status',
+        'device_token',
+        'language',
+        'channel_name',
+        'agora_token'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -34,12 +49,33 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
+
+    protected $appends = ['fullImage'];
+
+    protected function getFullImageAttribute()
+    {
+        return url('images/upload').'/'.$this->image;
+    }
+
+    public function User()
+    {
+        return $this->hasOne('App\Models\User');
+    }
+    
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class,'user_id');
+    }
+    
+    public function userAddress()
+    {
+        return $this->hasOne(UserAddress::class, 'user_id');
+    }
 }
