@@ -1,19 +1,14 @@
 import "./bootstrap";
-import { createApp } from "vue";
-import component1 from "./components/Component1.vue";
-import component2 from "./components/Component2.vue";
+import { createApp } from "vue/dist/vue.esm-bundler.js";
 import vuetify from "./vuetify";
+import Example from "./components/Component1.vue";
+import Component from "./components/Component2.vue";
 
-let selectedComponent = null;
+const app = createApp({
+    components: {
+        Example,
+        Component,
+    },
+});
 
-if (window.selectedComponent === 'component1') {
-    selectedComponent = component1;
-} else if (window.selectedComponent === 'component2') {
-    selectedComponent = component2;
-}
-
-let app = createApp(selectedComponent);
-
-if (app) {
-    app.use(vuetify).mount("#app");
-}
+app.use(vuetify).mount('#app');

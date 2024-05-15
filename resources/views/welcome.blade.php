@@ -12,14 +12,15 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        @vite('resources/js/app.js')
     </head>
     <body class="antialiased">
 
-        {{-- <div id="app"></div> --}}
+        <h1>Calendar Index Blade View2</h1>
+        <div id="app">
+            <component />
+        </div>
 
-        @vite('resources/js/app.js')
-        <script>
-            window.selectedComponent = "component2";
-        </script>
+        
     </body>
 </html>
