@@ -267,7 +267,7 @@
                 <div class="row mt-4">
                     <div class="col-lg-6 form-group">
                         <label class="col-form-group">{{__('Experience (in years)')}}</label>
-                        <input type="number" min="1" name="experience" value="{{ old('experience',$doctor->experience) }}" class="form-control @error('experience') is-invalid @enderror">
+                        <input type="number" min="0" name="experience" value="{{ old('experience',$doctor->experience) }}" class="form-control @error('experience') is-invalid @enderror">
                         @error('number')
                             <div class="invalid-feedback">
                                 {{ $message }}

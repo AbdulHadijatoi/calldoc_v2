@@ -352,6 +352,10 @@ class DoctorController extends Controller
         $doctor = Doctor::find($id);
         $data = $request->all();
 
+        if($request->appointment_fees == null || $request->appointment_fees == ''){
+            $data['appointment_fees'] = 0.00;
+        }
+        
         $data['start_time'] = Carbon::parse($data['start_time'])->format('h:i A');
         $data['end_time'] = Carbon::parse($data['end_time'])->format('h:i A');
         if($request->hasFile('image'))
