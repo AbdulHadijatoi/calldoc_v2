@@ -81,7 +81,7 @@ class Appointment extends Model
     }
 
     
-    public function scopeAppointmentsIn24Hours($query, $toleranceMinutes = 5)
+    public function scopeAppointmentsIn24Hours($query, $toleranceMinutes = 10)
     {
 
         $now = Carbon::now();
