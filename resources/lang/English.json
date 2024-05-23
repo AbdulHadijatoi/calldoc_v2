@@ -1100,5 +1100,7 @@
     "Please add at least one medicine before submitting.": "",
     "Please record a voice note of the prescription if you wish to send it to your patient via message.": "",
     "Add medicine to the list below": "",
-    "Slug": ""
+    "Slug": "",
+    "Today": "",
+    "Tomorrow": ""
 }

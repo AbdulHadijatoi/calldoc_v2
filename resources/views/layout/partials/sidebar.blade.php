@@ -92,13 +92,25 @@
             @endif
 
             @can('appointment_access')
-            <li class="{{ $activePage == 'appointment' ? 'active' : '' }}">
-                <a href="{{ url('appointment') }}">
-                    <i class="far fa-calendar-check"></i>
-                    <span>{{__('appointment')}}</span>
-                </a>
-            </li>
+                <li class="{{ Request::is('appointments*') ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="nav-link has-dropdown">
+                        <i class="far fa-calendar-check"></i>
+                        <span>{{__('Appointments')}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ Request::is('appointments') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('appointments') }}">{{__('All')}}</a>
+                        </li>
+                        <li class="{{ Request::is('appointments/today') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('appointments/today') }}">{{__('Today')}}</a>
+                        </li>
+                        <li class="{{ Request::is('appointments/tomorrow') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('appointments/tomorrow') }}">{{__('Tomorrow')}}</a>
+                        </li>
+                    </ul>
+                </li>
             @endcan
+
 
             @can('treatment_access')
             <li class="{{ $activePage == 'treatments' ? 'active' : '' }}">

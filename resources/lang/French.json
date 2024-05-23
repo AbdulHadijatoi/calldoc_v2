@@ -1098,5 +1098,7 @@
     "Please select a file or add medicine before submitting.": "Veuillez sélectionner un fichier ou ajouter un médicament avant de le soumettre.",
     "Please record a voice note of the prescription if you wish to send it to your patient via message.": "Veuillez enregistrer une note vocale de la prescription si vous souhaitez l'envoyer à votre patient par message.",
     "Add medicine to the list below": "Ajouter un médicament à la liste ci-dessous",
-    "Slug": "URL personnalisée"
+    "Slug": "URL personnalisée",
+    "Today": "Hoy",
+    "Tomorrow": "Mañana"
 }   

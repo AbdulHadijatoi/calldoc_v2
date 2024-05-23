@@ -231,6 +231,7 @@ Route::group(['middleware' => ['XssSanitizer']], function ()
 
         // Appointment
         Route::get('/appointment',[AppointmentController::class,'appointment']);
+        Route::get('/appointments/{type?}',[AppointmentController::class,'getAppointments']);
         Route::get('/inCalendar',[AppointmentController::class,'inCalendar']);
         Route::get('/create_appointment/{create_id}',[AppointmentController::class,'createAppointment']);
         Route::post('/store_appointment/{store_id}',[AppointmentController::class,'storeAppointment']);

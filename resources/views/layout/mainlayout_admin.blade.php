@@ -102,6 +102,7 @@
             @include('layout.partials.footer_admin-scripts')
         </div>
     </div>
+    {{-- @vite('resources/js/app.js') --}}
 </body>
 
 </html>

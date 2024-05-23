@@ -353,6 +353,37 @@ class AppointmentController extends Controller
         }
         return view('superAdmin.appointment.appointment',compact('appointments','currency'));
     }
+    
+    public function getAppointments($type = null)
+    {
+        (new CustomController)->cancel_max_order();
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $currency = Setting::first()->currency_symbol;
+
+        $doctor = Doctor::where('user_id', auth()->user()->id)->first();
+        
+        $query = Appointment::with(['doctor', 'address', 'hospital'])->where('doctor_id', $doctor->id);
+
+        if ($type === 'today') {
+            $query->whereDate('date', now()->toDateString());
+        } elseif ($type === 'tomorrow') {
+            $query->whereDate('date', now()->addDay()->toDateString());
+        }
+
+        $appointments = $query->orderBy('id', 'DESC')->get();
+
+        foreach ($appointments as $appointment) {
+            if (Prescription::where('appointment_id', $appointment->id)->first()) {
+                $appointment->prescription = '1';
+                $appointment->preData = Prescription::where('appointment_id', $appointment->id)->first();
+            } else {
+                $appointment->prescription = '0';
+            }
+        }
+
+        return view('superAdmin.appointment.appointment', compact('appointments', 'currency'));
+    }
+
 
     public function show_appointment($appointment_id)
     {
