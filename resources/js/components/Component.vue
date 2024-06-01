@@ -3,6 +3,8 @@
 </template>
 <script>
 export default {
-  // Component options
+  setup() {
+    
+  }
 }
 </script>

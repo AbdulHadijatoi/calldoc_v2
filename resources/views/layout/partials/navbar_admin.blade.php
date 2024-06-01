@@ -26,13 +26,13 @@
       @endphp
    </div>
     <li class="dropdown">
-      <a href="javascript:void(0);" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+      <a href="javascript:void(0);" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user d-flex align-items-center">
         <div class="d-sm-none d-lg-inline-block"></div>
         <img class="rounded" src="{{asset('/images/upload/'.$lang_image)}}"  style="width:40px; height:40px;">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         @foreach ($languages as $language)
-          <a href="{{ url('/change_language/'.$language->id) }}" class="dropdown-item d-flex justify-content-between">
+          <a href="{{ url('/change_language/'.$language->id) }}" class="dropdown-item d-flex justify-content-between align-items-center">
             <div class="dropdown-item-avatar">
               <img width="50px" height="30px" alt="image" src="{{asset('/images/upload/'.$language->image)}}" class="rounded">
             </div>
@@ -43,7 +43,7 @@
         @endforeach
       </div>
     </li>
-    <li class="dropdown"><a href="javascript:void(0)" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+    <li class="dropdown"><a href="javascript:void(0)" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user  d-flex align-items-center">
       <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->name }}</div></a>
       <div class="dropdown-menu dropdown-menu-right">
         @if(auth()->user()->hasRole('super admin'))

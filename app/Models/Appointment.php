@@ -5,15 +5,26 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 
 class Appointment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'appointment';
 
     protected $fillable = ['user_id','appointment_id','hospital_id','doctor_id','cancel_by','cancel_reason','payment_status','amount','payment_type','appointment_for','patient_name','age','report_image','drug_effect','patient_address','phone_no','date','time','payment_token','appointment_status','illness_information','note','doctor_commission','admin_commission','discount_id','discount_price','is_from','is_insured','policy_insurer_name','policy_number','notification_sent'];
+
+    public function getPrescription()
+    {
+        return $this->hasOne(Prescription::class, 'appointment_id');
+    }
+    
+    public function getPrescriptions()
+    {
+        return $this->hasMany(Prescription::class, 'appointment_id');
+    }
 
     public function doctor()
     {
@@ -43,10 +54,12 @@ class Appointment extends Model
         {
             $images = array();
             $image = json_decode($this->attributes['report_image']);
+            if($image){
 
-            for ($i=0; $i < count($image); $i++)
-            {
-                array_push($images,url('images/upload').'/'.$image[$i]);
+                for ($i=0; $i < count($image); $i++)
+                {
+                    array_push($images,url('images/upload').'/'.$image[$i]);
+                }
             }
 
             return $images;

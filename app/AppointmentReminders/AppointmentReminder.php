@@ -67,7 +67,7 @@ class AppointmentReminder
             $lat = $hospital->lat;
             $long = $hospital->lng;
             $google_map_url = "https://www.google.com/maps?q=$hospitalAddress";
-            $this->twilioService->sendContentTemplate($user->phone,'HX5808a62b256946c4c514a6c061bf969a',[
+            $this->twilioService->sendContentTemplate($user->phone,'HX67260de1f7898cef5291770fb56112e3',[
                 "1" => $user->name,
                 "2" => $appointment->date,
                 "3" => $appointment->time,
@@ -88,7 +88,7 @@ class AppointmentReminder
         $hospital = $appointment->hospital;
         $hospitalAddress = $hospital?$hospital->address??null:null;
         if($hospitalAddress && $user){
-            $this->twilioService->sendContentTemplate($user->phone,'HX284c0639f04e98580a9b12e081132e04',[
+            $this->twilioService->sendContentTemplate($user->phone,'HX6704f9b008c9ee445689bdafbaab1174',[
                 "1" => $user->name,
                 "2" => $appointment->date,
                 "3" => $appointment->time,

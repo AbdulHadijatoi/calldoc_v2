@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\superAdmin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Doctor;
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class AppointmentController extends Controller
+class AppointmentController extends AppBaseController
 {
     protected $twilioService;
 
@@ -164,7 +165,7 @@ class AppointmentController extends Controller
             $long = $hospital->lng;
             $google_map_url = "https://www.google.com/maps?q=$hospitalAddress";
             Log::info('AppointmentController:acceptAppointment() patient notification',[
-                $user->phone,'HX98adc0156425cced35ee51de2285465a',[
+                $user->phone,'HX6bd65a12220813371257e5e0865c3c06',[
                     "1" => $user->name,
                     "2" => $appointment->date,
                     "3" => $appointment->time,
@@ -174,7 +175,7 @@ class AppointmentController extends Controller
                     "7" => $google_map_url,
                 ]
             ]); // Log message
-            $this->twilioService->sendContentTemplate($user->phone,'HX98adc0156425cced35ee51de2285465a',[
+            $this->twilioService->sendContentTemplate($user->phone,'HX6bd65a12220813371257e5e0865c3c06',[
                 "1" => $user->name,
                 "2" => $appointment->date,
                 "3" => $appointment->time,
@@ -358,6 +359,16 @@ class AppointmentController extends Controller
     {
         (new CustomController)->cancel_max_order();
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('superAdmin.appointment.appointment', compact('type'));
+    }
+    
+    public function getAppointmentsData(Request $request) {
+        $type = null;
+        if($request->type){
+            $type = $request->type;
+        }
+
         $currency = Setting::first()->currency_symbol;
 
         $doctor = Doctor::where('user_id', auth()->user()->id)->first();
@@ -370,18 +381,28 @@ class AppointmentController extends Controller
             $query->whereDate('date', now()->addDay()->toDateString());
         }
 
-        $appointments = $query->orderBy('id', 'DESC')->get();
+        $appointments = $query->orderBy('id', 'DESC')->paginate($request->per_page);
+        $total = $appointments->total();
 
         foreach ($appointments as $appointment) {
-            if (Prescription::where('appointment_id', $appointment->id)->first()) {
-                $appointment->prescription = '1';
-                $appointment->preData = Prescription::where('appointment_id', $appointment->id)->first();
+            $prescription = $appointment->getPrescription;
+            if ($prescription) {
+                $appointment->prescription = '1';// this is not the way but lets proceed anyways
+                $appointment->preData = $prescription;
             } else {
                 $appointment->prescription = '0';
             }
+            // $appointment->patient_name = $appointment->user ? $appointment->user->name ?? '-' : '-';
         }
 
-        return view('superAdmin.appointment.appointment', compact('appointments', 'currency'));
+        $data = [
+            "currency" => $currency,
+            "appointments" => $appointments,
+            "total_appointments" => $total,
+            "is_doctor" => auth()->user()->hasRole('doctor') ? 1 : 0,
+        ];
+
+        return $this->sendDataResponse($data);
     }
 
 
@@ -582,7 +603,7 @@ class AppointmentController extends Controller
                 "6" => "images/upload/$prescription_image",
             ]);
         }
-        return redirect('/appointment');
+        return redirect('/appointments');
     }
 
 
@@ -793,7 +814,7 @@ class AppointmentController extends Controller
             }
         }
         $appointment->delete();
-        return redirect('appointment')->with('status',__('Appointment Delete successfully...!!'));
+        return redirect()->back()->with('status',__('Appointment Delete successfully...!!'));
     }
 
     public function addAddr(Request $request)

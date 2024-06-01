@@ -3,6 +3,7 @@
 <head>
     <script src="{{ url('assets_admin/js/jquery.min.js')}}"></script>
     @include('layout.partials.head_admin')
+    @vite('resources/css/app.css') 
 </head>
 
 <body>
@@ -102,7 +103,7 @@
             @include('layout.partials.footer_admin-scripts')
         </div>
     </div>
-    {{-- @vite('resources/js/app.js') --}}
+    @vite('resources/js/app.js')
 </body>
 
 </html>

@@ -252,26 +252,6 @@
         });
     });
     const phoneInputField = document.querySelector(".phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        preferredCountries: ["us", "co", "in", "de"],
-        initialCountry: "in",
-        separateDialCode: true,
-        utilsScript: "{{url('assets/js/utils.js')}}",
-    });
-    phoneInputField.addEventListener("countrychange", function() {
-        var phone_code = $('.phone').find('.iti__selected-dial-code').text();
-        $('input[name=phone_code]').val('+' + phoneInput.getSelectedCountryData().dialCode);
-    });
-
-    const DocphoneInputField = document.querySelector(".doc_phone");
-    const docphoneInput = window.intlTelInput(DocphoneInputField, {
-        preferredCountries: ["us", "co", "in", "de"],
-        initialCountry: "in",
-        separateDialCode: true,
-        utilsScript: "{{url('assets/js/utils.js')}}",
-    });
-    DocphoneInputField.addEventListener("countrychange", function() {
-        $('input[name=phone_code]').val('+' + docphoneInput.getSelectedCountryData().dialCode);
-    });
+    
 </script>
 @endsection

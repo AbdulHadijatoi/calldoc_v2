@@ -96,7 +96,7 @@ class WebsiteController extends Controller
             'password' => Hash::make($request->password),
             'verify' => $verify,
             'phone' => $data['phone'],
-            'phone_code' => $data['phone_code'],
+            'phone_code' => 212,
             'image' => 'defaultUser.png',
             'status' => 1,
             'dob' => $data['dob'],
@@ -126,7 +126,7 @@ class WebsiteController extends Controller
         $data['name'] = $request->doc_name;
         $data['email'] = $request->doc_email;
         $data['phone'] = $request->doc_phone;
-        $data['phone_code'] = $request->phone_code;
+        $data['phone_code'] = 212;
         $data['dob'] = $request->doc_dob;
         $data['gender'] = $request->doc_gender;
         $data['password'] = $request->doc_password;

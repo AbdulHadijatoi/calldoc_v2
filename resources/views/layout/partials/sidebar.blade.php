@@ -5,7 +5,7 @@
             $settings = App\Models\Setting::first();
             @endphp
             @if (auth()->user()->hasRole('super admin'))
-            <a href="{{ url('/home') }}">
+            <a href="{{ url('/home') }}" class="d-flex justify-content-center">
                 @if($settings->company_logo)
                 <img src="{{ $settings->logo }}" width="180" height="45" alt="Logo" style="object-fit: contain;">
                 @else
@@ -13,7 +13,7 @@
                 @endif
             </a>
             @elseif(auth()->user()->hasRole('doctor'))
-            <a href="{{ url('/doctor_home') }}">
+            <a href="{{ url('/doctor_home') }}" class="d-flex justify-content-center">
                 @if($settings->company_logo)
                 <img src="{{ $settings->logo }}" width="180" height="45" alt="Logo">
                 @else
@@ -21,7 +21,7 @@
                 @endif
             </a>
             @elseif(auth()->user()->hasRole('pharmacy'))
-            <a href="{{ url('/pharmacy_home') }}">
+            <a href="{{ url('/pharmacy_home') }}" class="d-flex justify-content-center">
                 @if($settings->company_logo)
                 <img src="{{ $settings->logo }}" width="180" height="45" alt="Logo">
                 @else
@@ -29,7 +29,7 @@
                 @endif
             </a>
             @elseif(auth()->user()->hasRole('laboratory'))
-            <a href="{{ url('/pathologist_home') }}">
+            <a href="{{ url('/pathologist_home') }}" class="d-flex justify-content-center">
                 @if($settings->company_logo)
                 <img src="{{ $settings->logo }}" width="180" height="45" alt="Logo">
                 @else
