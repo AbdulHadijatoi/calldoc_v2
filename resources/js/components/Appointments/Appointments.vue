@@ -352,7 +352,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .v-icon--size-default {
   font-size: calc(var(--v-icon-size-multiplier) * 1.2em) !important;
 }
