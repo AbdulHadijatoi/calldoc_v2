@@ -3,7 +3,7 @@
     <div data-app>
       <div class="card add-product card--content-center">
         <div class="card__wrapper">
-          <v-container class="col-12">
+          <!-- <v-container class="col-12"> -->
             <v-row class="p-2 d-flex justify-content-between">
               <v-col cols="12" sm="12" lg="6" xl="6">
                 <v-text-field
@@ -128,7 +128,7 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-          </v-container>
+          <!-- </v-container> -->
         </div>
       </div>
     </div>
