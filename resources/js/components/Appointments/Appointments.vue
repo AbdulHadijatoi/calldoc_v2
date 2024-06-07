@@ -219,17 +219,17 @@ export default {
     const appointmentDetails = ref({});
 
     const headers = [
-      {title: 'Appointment Id', key: 'appointment_id', align: 'start'},
-      {title: 'Patient Name', key: 'patient_name', align: 'start'},
+      {title: 'Numéro de rendez-vous', key: 'appointment_id', align: 'start'},
+      {title: 'Nom du patient', key: 'patient_name', align: 'start'},
       {title: 'Note', key: 'note', align: 'start'},
-      {title: 'Amount', key: 'amount', align: 'start'},
+      {title: 'Montant', key: 'amount', align: 'start'},
       {title: 'Date', key: 'date', align: 'start'},
-      {title: 'Payment Status', key: 'payment_status', align: 'start'},
-      {title: 'Status', key: 'appointment_status', align: 'start'},
-      {title: 'Change Status', key: 'change_status', align: 'start'},
-      {title: 'Add Prescription', key: 'add_prescription', align: 'start'},
-      {title: 'Create Zoom Meeting', key: 'create_zoom_meeting', align: 'start'},
-      {title: "Action", key: "actions", align: 'center'},
+      {title: 'Statut de paiement', key: 'payment_status', align: 'start'},
+      {title: 'Statut', key: 'appointment_status', align: 'start'},
+      {title: 'Changer le statut', key: 'change_status', align: 'start'},
+      {title: 'Ajouter une ordonnance', key: 'add_prescription', align: 'start'},
+      {title: 'Créer une réunion Zoom', key: 'create_zoom_meeting', align: 'start'},
+      {title: 'Action', key: "actions", align: 'center'},
     ];
 
     const getData = async () => {

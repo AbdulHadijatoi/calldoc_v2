@@ -1,4 +1,4 @@
-<nav class="border-gray-200 sm:px-4 py-2.5 rounded border-b border-slate">
+<nav class="border-gray-200 sm:px-4 rounded border-b border-slate">
     <div class="msm:mx-0 xsm:mx-0 xxsm:mx-0 xlg:mx-20 2xl:mx-20">
         <div class="flex flex-wrap items-center justify-between mx-auto">
             <a href="{{ url('/') }}" class="flex items-center ml-2">
@@ -102,7 +102,7 @@
                 </button>
             </div>
             <div class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1" id="mobile-menu-language-select">
-                <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
+                <ul class="flex flex-col p-3 mt-3 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                     <li>
                         <a href="{{url('/show-doctors')}}" class="{{ $activePage == 'doctors' ? 'text-primary' : 'text-black' }} font-fira-sans block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0" aria-current="page">{{ __('Find Doctors') }}</a>
                     </li>
