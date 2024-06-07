@@ -1,8 +1,5 @@
 <!doctype HTML>
 <html>
-@php
-    App::setLocale(session()->get('locale'));
-@endphp
 <head>
     @php
     $setting = App\Models\Setting::first();

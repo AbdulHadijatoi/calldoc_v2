@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use App;
 use App\Models\Role;
 use App\Models\Setting;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 class Localization
@@ -21,7 +20,7 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        // if (env('DB_DATABASE')) {
+        if (env('DB_DATABASE')) {
           
             if (auth()->check()) 
             {
@@ -54,7 +53,7 @@ class Localization
                 session()->put('locale',$language);
                 session()->put('direction',$direction);
             }
-        // }
+        }
         return $next($request);
     }
 }

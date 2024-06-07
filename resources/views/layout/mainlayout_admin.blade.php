@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-@php
-    App::setLocale(session()->get('locale'));
-@endphp
 <head>
     <script src="{{ url('assets_admin/js/jquery.min.js')}}"></script>
     @include('layout.partials.head_admin')
