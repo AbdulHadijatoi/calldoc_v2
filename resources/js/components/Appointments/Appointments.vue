@@ -21,11 +21,9 @@
                   </template>
                 </v-text-field>
               </v-col>
-              <v-col class="d-flex justify-content-end" cols="12" sm="12" lg="6" xl="6">
-                <v-btn class="ml-2" color="primary" outlined elevation="0" @click="getData('xlsx',0)">
-                  <i class="fa fa-download mr-2"></i> Excel
-                </v-btn>
-              </v-col>
+              <v-btn class="ml-2" color="primary" outlined elevation="0" @click="downloadExcel">
+                <i class="fa fa-download mr-2"></i> Excel
+              </v-btn>
             </v-row>
             <br/>
             <v-data-table-server
@@ -192,6 +190,7 @@
 <script>
 import { ref, onMounted, onBeforeMount, watch, computed, isProxy, toRaw } from 'vue';
 import axios from 'axios';
+import * as XLSX from 'xlsx';
 
 export default {
   props: {
@@ -238,6 +237,7 @@ export default {
       try {
         const response = await axios.post('/get-appointments-data', {
           type: props.type,
+          search: search.value,
         });
         appointments.value = response.data.appointments.data;
         totalItems.value = response.data.total_appointments;
@@ -247,6 +247,17 @@ export default {
         console.error('Error:', error);
         loading.value = false;
       }
+    };
+    
+    const downloadExcel = () => {
+      const worksheet = XLSX.utils.json_to_sheet(appointments.value);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Appointments');
+      
+      const timestamp = new Date().toISOString().replace(/[-:.]/g, '');
+      const filename = `appointments_${timestamp}.xlsx`;
+
+      XLSX.writeFile(workbook, filename);
     };
 
     const confirmDelete = (appointmentId) => {
@@ -266,18 +277,7 @@ export default {
     const editAppointment = (appointmentId) => {
       window.location.href = `/edit_appointment/${appointmentId}`;
     };
-    
-    // const addPrescription = (appointment) => {
-    //   if(appointment.prescription == 0){
-    //     window.location.href = `/prescription/${appointment.id}`;
-    //   }else{
-    //     window.location.href = 'prescription/upload/'+appointment.preData.pdf;
-    //   }
-    // };
 
-    // const viewAppointment = (appointmentId) => {
-    //   window.location.href = `/show_appointment/${appointmentId}`;
-    // };
     const viewAppointment = async (appointmentId) => {
       try {
         const response = await axios.get(`/show_appointment/${appointmentId}`);
@@ -346,7 +346,7 @@ export default {
       clearFilters, totalItems, headers, dateRange, formatDate, isDoctor,
       selectedRows, selectedIds, toggleSelect, confirmDelete, deleteAppointment,
       viewAppointment, editAppointment, search, deleteDialog, confirmDeleteAction,
-      appointmentDialog, appointmentDetails
+      appointmentDialog, appointmentDetails, downloadExcel
     };
   }
 }

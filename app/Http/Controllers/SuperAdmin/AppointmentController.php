@@ -364,16 +364,26 @@ class AppointmentController extends AppBaseController
     }
     
     public function getAppointmentsData(Request $request) {
-        $type = null;
-        if($request->type){
-            $type = $request->type;
-        }
+        $type = $request->type;
+        $search = $request->search;
 
         $currency = Setting::first()->currency_symbol;
 
         $doctor = Doctor::where('user_id', auth()->user()->id)->first();
+
+        if(!$doctor){
+            return $this->sendError('doctor not found!',422);
+        }
         
-        $query = Appointment::with(['doctor', 'address', 'hospital'])->where('doctor_id', $doctor->id);
+        $query = Appointment::with(['doctor', 'address', 'hospital'])
+                        ->when(!empty($search), function($query) use($search){
+                            return $query->where('patient_name','like',"%$search%")
+                            ->orWhere('appointment_id','like',"%$search%")
+                            ->orWhere('phone_no','like',"%$search%")
+                            ->orWhere('illness_information','like',"%$search%")
+                            ->orWhere('note','like',"%$search%");
+                        })
+                        ->where('doctor_id', $doctor->id);
 
         if ($type === 'today') {
             $query->whereDate('date', now()->toDateString());
