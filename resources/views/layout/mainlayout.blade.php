@@ -80,7 +80,6 @@
         <script src="{{ url('assets/js/custom.js') }}"></script>
         <script src="{{ url('js/app.js') }}"></script>
         @yield('js')
-        @vite('resources/js/app.js')
     </body>
 
 </html>
