@@ -156,20 +156,20 @@
           </v-col>
           <v-col cols="12" md="6">
             <strong class="highlight">Doctor Information:</strong><br>
-            <strong>Name:</strong> <span>{{ appointmentDetails.doctor.name }}</span><br>
-            <strong>Description:</strong> <span>{{ appointmentDetails.doctor.desc }}</span><br>
+            <strong>Name:</strong> <span>{{ appointmentDetails.doctor?appointmentDetails.doctor.name:'-' }}</span><br>
+            <strong>Description:</strong> <span>{{ appointmentDetails.doctor?appointmentDetails.doctor.desc:'-' }}</span><br>
             <!-- Display other doctor details here -->
             <br>
             <strong class="highlight">Patient Address:</strong><br>
-            <strong>Address:</strong> <span>{{ appointmentDetails.address.address }}</span><br>
-            <strong>Latitude:</strong> <span>{{ appointmentDetails.address.lat }}</span><br>
-            <strong>Longitude:</strong> <span>{{ appointmentDetails.address.lang }}</span><br>
+            <strong>Address:</strong> <span>{{ appointmentDetails.address?appointmentDetails.address.address:'-' }}</span><br>
+            <strong>Latitude:</strong> <span>{{ appointmentDetails.address?appointmentDetails.address.lat:'-' }}</span><br>
+            <strong>Longitude:</strong> <span>{{ appointmentDetails.address?appointmentDetails.address.lang:'-' }}</span><br>
             <!-- Display other address details here -->
             <br>
             <strong class="highlight">Hospital Information:</strong><br>
-            <strong>Name:</strong> <span>{{ appointmentDetails.hospital.name }}</span><br>
-            <strong>Phone:</strong> <span>{{ appointmentDetails.hospital.phone }}</span><br>
-            <strong>Address:</strong> <span>{{ appointmentDetails.hospital.address }}</span><br>
+            <strong>Name:</strong> <span>{{ appointmentDetails.hospital?appointmentDetails.hospital.name:'-' }}</span><br>
+            <strong>Phone:</strong> <span>{{ appointmentDetails.hospital?appointmentDetails.hospital.phone:'-' }}</span><br>
+            <strong>Address:</strong> <span>{{ appointmentDetails.hospital?appointmentDetails.hospital.address:'-' }}</span><br>
             <!-- Display other hospital details here -->
           </v-col>
         </v-row>
