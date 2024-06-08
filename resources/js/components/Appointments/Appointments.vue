@@ -237,6 +237,8 @@ export default {
         const response = await axios.post('/get-appointments-data', {
           type: props.type,
           search: search.value,
+          page: currentPage.value,
+          perPage: itemsPerPage.value,
         });
         appointments.value = response.data.appointments.data;
         totalItems.value = response.data.total_appointments;

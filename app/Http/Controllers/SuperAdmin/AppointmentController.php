@@ -366,6 +366,7 @@ class AppointmentController extends AppBaseController
     public function getAppointmentsData(Request $request) {
         $type = $request->type;
         $search = $request->search;
+        $perPage = $request->perPage;
 
         $currency = Setting::first()->currency_symbol;
         $query = Appointment::with(['doctor', 'address', 'hospital'])
@@ -393,7 +394,7 @@ class AppointmentController extends AppBaseController
             $query->whereDate('date', now()->addDay()->toDateString());
         }
 
-        $appointments = $query->orderBy('id', 'DESC')->paginate($request->per_page);
+        $appointments = $query->orderBy('id', 'DESC')->paginate($perPage);
         $total = $appointments->total();
 
         foreach ($appointments as $appointment) {
