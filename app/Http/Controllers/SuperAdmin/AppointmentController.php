@@ -368,16 +368,15 @@ class AppointmentController extends AppBaseController
         $search = $request->search;
 
         $currency = Setting::first()->currency_symbol;
-        if(auth()->user()->hasRole('super admin')) {
-            $query = Appointment::with(['doctor', 'address', 'hospital'])
-                        ->when(!empty($search), function($query) use($search){
-                            return $query->where('patient_name','like',"%$search%")
-                            ->orWhere('appointment_id','like',"%$search%")
-                            ->orWhere('phone_no','like',"%$search%")
-                            ->orWhere('illness_information','like',"%$search%")
-                            ->orWhere('note','like',"%$search%");
-                        });
-        }else{
+        $query = Appointment::with(['doctor', 'address', 'hospital'])
+                    ->when(!empty($search), function($query) use($search){
+                        return $query->where('patient_name','like',"%$search%")
+                        ->orWhere('appointment_id','like',"%$search%")
+                        ->orWhere('phone_no','like',"%$search%")
+                        ->orWhere('illness_information','like',"%$search%")
+                        ->orWhere('note','like',"%$search%");
+                    });
+        if(!auth()->user()->hasRole('super admin')) {
             $doctor = Doctor::where('user_id', auth()->user()->id)->first();
     
             if(!$doctor){
