@@ -170,7 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-        Berkayk\OneSignal\OneSignalServiceProvider::class
+        Berkayk\OneSignal\OneSignalServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ])->toArray(),
 
     /*

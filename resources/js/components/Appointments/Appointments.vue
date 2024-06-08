@@ -12,7 +12,6 @@
                   density="compact"
                   label="Search Appointment"
                   @keyup.enter="getData()"
-                  @blur="getData()"
                 >
                   <template v-slot:append-inner>
                     <v-icon @click="getData">

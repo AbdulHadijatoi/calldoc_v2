@@ -5,6 +5,7 @@ use App\Http\Controllers\lab\PathologyController;
 use App\Http\Controllers\lab\RadiologyController;
 use App\Http\Controllers\LabSettingController;
 use App\Http\Controllers\MultiDeleteController;
+use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\PrescriptionRecordingController;
 use App\Http\Controllers\SuperAdmin\AdminController;
 use App\Http\Controllers\SuperAdmin\AdminUserController;
@@ -427,7 +428,8 @@ Route::group(['middleware' => ['XssSanitizer']], function ()
 });
 
 Route::get('/prescription_recording/{prescription_id?}/{keycode?}',[PrescriptionRecordingController::class,'index']);
-
+Route::get('medicines',[MedicinesController::class,'index']);
+Route::get('medicines/get-data',[MedicinesController::class,'getData']);
 Route::middleware(['auth'])->group(function ()
 {
     Route::post('/update_static_page',[SettingController::class,'update_static_page']);
@@ -436,7 +438,7 @@ Route::middleware(['auth'])->group(function ()
     Route::post('/update_pharmacy_profile',[App\Http\Controllers\Pharmacy\PharmacyController::class,'update_pharmacy_profile']);
 
     Route::resource('blog',BlogController::class);
-    Route::resource('medicines',App\Http\Controllers\Pharmacy\MedicineController::class);
+    // Route::resource('medicines',App\Http\Controllers\Pharmacy\MedicineController::class);
     Route::resource('pharmacy',PharmacyController::class);
 
     // Settings

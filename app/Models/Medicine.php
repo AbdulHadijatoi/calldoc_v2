@@ -11,8 +11,8 @@ class Medicine extends Model
 
     protected $table = 'medicine';
 
-    protected $fillable = ['name','image','pharmacy_id','medicine_category_id','status','incoming_stock','total_stock','use_stock','description','works','price_pr_strip','number_of_medicine','prescription_required','meta_info'];
-
+    // protected $fillable = ['name','image','pharmacy_id','medicine_category_id','status','incoming_stock','total_stock','use_stock','description','works','price_pr_strip','number_of_medicine','prescription_required','meta_info'];
+    protected $guarded = [];
     protected $appends = ['fullImage'];
 
     protected function getFullImageAttribute()

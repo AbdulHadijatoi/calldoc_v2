@@ -58,14 +58,15 @@
             @endif
         </div>
         <ul class="sidebar-menu">
-            @can('superadmin_dashboard')
+
+            @if (auth()->user()->can('superadmin_dashboard'))
             <li class="{{ $activePage == 'home' ? 'active' : '' }}">
                 <a href="{{ url('home') }}">
                     <i class="fas fa-home"></i>
                     <span>{{__('Dashboard')}}</span>
                 </a>
             </li>
-            @endcan
+            @endif
 
             {{-- Doctor --}}
             @if (auth()->user()->hasRole('doctor'))
