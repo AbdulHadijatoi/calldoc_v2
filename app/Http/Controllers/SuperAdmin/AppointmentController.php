@@ -700,7 +700,7 @@ class AppointmentController extends AppBaseController
         $data['payment_type'] = 'COD';
         $data = array_filter($data, function($a) {return $a !== "";});
         Appointment::create($data);
-        return redirect('appointment')->with('status',__('Appointment Add successfully...!!'));
+        return redirect('appointments')->with('status',__('Appointment Add successfully...!!'));
     }
     public function editAppointment($id)
     {
@@ -811,7 +811,7 @@ class AppointmentController extends AppBaseController
             ]);
         }
 
-        return redirect('appointment')->with('status',__('Appointment Update successfully...!!'));
+        return redirect('appointments')->with('status',__('Appointment Update successfully...!!'));
     }
 
     public function deleteAppointment($id)

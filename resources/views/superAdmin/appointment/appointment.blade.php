@@ -10,7 +10,7 @@
         ])
 
         <div id="app">
-            <appointments :type="'{{ $type }}'"/>
+            <appointments :type="'{{ $type??'' }}'"/>
         </div>
 
     </section>
