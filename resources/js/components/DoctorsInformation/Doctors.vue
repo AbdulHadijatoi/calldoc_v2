@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Doctor Information List</h1>
+        <h1>Liste d'informations sur le médecin</h1>
         <v-text-field
           v-model="search"
           label="Search"
@@ -30,15 +30,15 @@
           <v-card>
             <v-card-title>{{ selectedDoctor.business_name }}</v-card-title>
             <v-card-text>
-              <p><strong>Google Place URL:</strong> <a :href="selectedDoctor.google_place_url" target="_blank">{{ selectedDoctor.google_place_url }}</a></p>
-              <p><strong>Phone:</strong> {{ selectedDoctor.business_phone }}</p>
-              <p><strong>Type:</strong> {{ selectedDoctor.type }}</p>
-              <p><strong>Sub Types:</strong> {{ selectedDoctor.sub_types }}</p>
-              <p><strong>Category:</strong> {{ selectedDoctor.category }}</p>
-              <p><strong>Address:</strong> {{ selectedDoctor.full_address }}</p>
-              <p><strong>Street:</strong> {{ selectedDoctor.street }}</p>
-              <p><strong>City:</strong> {{ selectedDoctor.city }}</p>
-              <p><strong>Country:</strong> {{ selectedDoctor.country }}</p>
+              <p><strong>URL de Google Place :</strong> <a :href="selectedDoctor.google_place_url" target="_blank">{{ selectedDoctor.google_place_url }}</a></p>
+              <p><strong>Téléphone:</strong> {{ selectedDoctor.business_phone }}</p>
+              <p><strong>Taper:</strong> {{ selectedDoctor.type }}</p>
+              <p><strong>Sous-types :</strong> {{ selectedDoctor.sub_types }}</p>
+              <p><strong>Catégorie:</strong> {{ selectedDoctor.category }}</p>
+              <p><strong>Adresse:</strong> {{ selectedDoctor.full_address }}</p>
+              <p><strong>Rue:</strong> {{ selectedDoctor.street }}</p>
+              <p><strong>Ville:</strong> {{ selectedDoctor.city }}</p>
+              <p><strong>Pays:</strong> {{ selectedDoctor.country }}</p>
               <p><strong>Latitude:</strong> {{ selectedDoctor.latitude }}</p>
               <p><strong>Longitude:</strong> {{ selectedDoctor.longitude }}</p>
             </v-card-text>

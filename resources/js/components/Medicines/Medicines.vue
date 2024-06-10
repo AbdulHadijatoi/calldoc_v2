@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Medicine List</h1>
+        <h1>Liste des médicaments</h1>
         <v-text-field
           v-model="search"
           label="Search"
@@ -31,16 +31,16 @@
             <v-card-title>{{ selectedMedicine.name }}</v-card-title>
             <v-card-text>
               <p><strong>Code:</strong> {{ selectedMedicine.code }}</p>
-              <p><strong>DCI:</strong> {{ selectedMedicine.dci1 }}</p>
+              <p><strong>DCI :</strong> {{ selectedMedicine.dci1 }}</p>
               <p><strong>Dosage:</strong> {{ selectedMedicine.dosage1 }} {{ selectedMedicine.unit_dosage1 }}</p>
-              <p><strong>Shape:</strong> {{ selectedMedicine.shape }}</p>
-              <p><strong>Presentation:</strong> {{ selectedMedicine.presentation }}</p>
-              <p><strong>PPV:</strong> {{ selectedMedicine.ppv }}</p>
-              <p><strong>Price:</strong> {{ selectedMedicine.price_br }}</p>
-              <p><strong>Refund Rate:</strong> {{ selectedMedicine.refund_rate }}</p>
+              <p><strong>Forme:</strong> {{ selectedMedicine.shape }}</p>
+              <p><strong>Présentation:</strong> {{ selectedMedicine.presentation }}</p>
+              <p><strong>Télévision à la carte :</strong> {{ selectedMedicine.ppv }}</p>
+              <p><strong>Prix:</strong> {{ selectedMedicine.price_br }}</p>
+              <p><strong>Taux de remboursement :</strong> {{ selectedMedicine.refund_rate }}</p>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" @click="showModal = false">Close</v-btn>
+              <v-btn color="primary" @click="showModal = false">Fermer</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
