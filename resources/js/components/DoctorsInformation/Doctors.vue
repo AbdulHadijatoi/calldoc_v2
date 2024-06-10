@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Medicine List</h1>
+        <h1>Doctor Information List</h1>
         <v-text-field
           v-model="search"
           label="Search"
@@ -10,12 +10,12 @@
         ></v-text-field>
         <v-list>
           <v-list-item
-            v-for="medicine in medicines"
-            :key="medicine.id"
-            @click="selectMedicine(medicine)"
+            v-for="doctor in doctors"
+            :key="doctor.id"
+            @click="selectDoctor(doctor)"
           >
             <v-list-item-content>
-              <v-list-item-title>{{ formatMedicineLabel(medicine) }}</v-list-item-title>
+              <v-list-item-title>{{ formatDoctorLabel(doctor) }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -28,16 +28,19 @@
 
         <v-dialog v-model="showModal" max-width="600px">
           <v-card>
-            <v-card-title>{{ selectedMedicine.name }}</v-card-title>
+            <v-card-title>{{ selectedDoctor.business_name }}</v-card-title>
             <v-card-text>
-              <p><strong>Code:</strong> {{ selectedMedicine.code }}</p>
-              <p><strong>DCI:</strong> {{ selectedMedicine.dci1 }}</p>
-              <p><strong>Dosage:</strong> {{ selectedMedicine.dosage1 }} {{ selectedMedicine.unit_dosage1 }}</p>
-              <p><strong>Shape:</strong> {{ selectedMedicine.shape }}</p>
-              <p><strong>Presentation:</strong> {{ selectedMedicine.presentation }}</p>
-              <p><strong>PPV:</strong> {{ selectedMedicine.ppv }}</p>
-              <p><strong>Price:</strong> {{ selectedMedicine.price_br }}</p>
-              <p><strong>Refund Rate:</strong> {{ selectedMedicine.refund_rate }}</p>
+              <p><strong>Google Place URL:</strong> <a :href="selectedDoctor.google_place_url" target="_blank">{{ selectedDoctor.google_place_url }}</a></p>
+              <p><strong>Phone:</strong> {{ selectedDoctor.business_phone }}</p>
+              <p><strong>Type:</strong> {{ selectedDoctor.type }}</p>
+              <p><strong>Sub Types:</strong> {{ selectedDoctor.sub_types }}</p>
+              <p><strong>Category:</strong> {{ selectedDoctor.category }}</p>
+              <p><strong>Address:</strong> {{ selectedDoctor.full_address }}</p>
+              <p><strong>Street:</strong> {{ selectedDoctor.street }}</p>
+              <p><strong>City:</strong> {{ selectedDoctor.city }}</p>
+              <p><strong>Country:</strong> {{ selectedDoctor.country }}</p>
+              <p><strong>Latitude:</strong> {{ selectedDoctor.latitude }}</p>
+              <p><strong>Longitude:</strong> {{ selectedDoctor.longitude }}</p>
             </v-card-text>
             <v-card-actions>
               <v-btn color="primary" @click="showModal = false">Close</v-btn>
@@ -55,13 +58,13 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      medicines: [],
+      doctors: [],
       page: 1,
       perPage: 10,
       totalPages: 0,
       search: '',
       showModal: false,
-      selectedMedicine: {},
+      selectedDoctor: {},
     };
   },
   watch: {
@@ -72,7 +75,7 @@ export default {
   methods: {
     getData() {
       axios
-        .get('/medicines/get-data', {
+        .get('/doctors-information/get-data', {
           params: {
             page: this.page,
             perPage: this.perPage,
@@ -80,24 +83,25 @@ export default {
           },
         })
         .then(response => {
-          this.medicines = response.data.data;
+          this.doctors = response.data.data;
           this.totalPages = Math.ceil(response.data.total / this.perPage);
         })
         .catch(error => {
-          console.error("There was an error fetching the medicines:", error);
+          console.error("There was an error fetching the doctors:", error);
         });
     },
-    selectMedicine(medicine) {
-      this.selectedMedicine = medicine;
+    selectDoctor(doctor) {
+      this.selectedDoctor = doctor;
       this.showModal = true;
     },
-    formatMedicineLabel(medicine) {
+    formatDoctorLabel(doctor) {
       return [
-        medicine.name ? medicine.name + ', ' : '',
-        medicine.dosage1 ? medicine.dosage1 + ' ' : '',
-        medicine.unit_dosage1 ? medicine.unit_dosage1 + ', ' : '',
-        medicine.shape ? medicine.shape + ', ' : '',
-        medicine.presentation
+        doctor.business_name ? doctor.business_name + ', ' : '',
+        doctor.business_phone ? doctor.business_phone + ', ' : '',
+        doctor.type ? doctor.type + ', ' : '',
+        doctor.category ? doctor.category + ', ' : '',
+        doctor.city ? doctor.city + ', ' : '',
+        doctor.country
       ].join('');
     },
     handlePageChange(newPage) {

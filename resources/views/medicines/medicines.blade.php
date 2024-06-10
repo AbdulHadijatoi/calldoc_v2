@@ -5,7 +5,8 @@
 @section('content')
 
     <div id="app">
-        <medicines/>
+        <medicine/>
     </div>
 
+    @vite('resources/js/app.js')
 @endsection

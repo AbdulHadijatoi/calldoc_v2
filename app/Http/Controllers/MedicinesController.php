@@ -27,6 +27,25 @@ class MedicinesController extends AppBaseController
 
     public function getData(Request $request) {
         $perPage = $request->get('perPage', 10);
+        $search = $request->get('search', '');
+    
+        $medicines = Medicine::where(function($query) use ($search) {
+            if ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('code', 'like', '%' . $search . '%')
+                    ->orWhere('dci1', 'like', '%' . $search . '%')
+                    ->orWhere('dosage1', 'like', '%' . $search . '%')
+                    ->orWhere('unit_dosage1', 'like', '%' . $search . '%')
+                    ->orWhere('shape', 'like', '%' . $search . '%')
+                    ->orWhere('presentation', 'like', '%' . $search . '%');
+            }
+        })->paginate($perPage);
+    
+        return response()->json($medicines);
+    }
+    
+    public function getData2(Request $request) {
+        $perPage = $request->get('perPage', 10);
         $page = $request->get('page', 1);
         $sortBy = $request->get('sortBy', 'id');
         $sortDesc = $request->get('sortDesc', 'false') === 'true';

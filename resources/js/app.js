@@ -2,6 +2,8 @@ import "./bootstrap";
 import { createApp } from "vue/dist/vue.esm-bundler.js";
 
 import Component from "./components/Component.vue";
+import Medicine from "./components/Medicines/Medicines.vue";
+import Doctors from "./components/DoctorsInformation/Doctors.vue";
 import Appointments from "./components/Appointments/Appointments.vue";
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import "vuetify/styles";
@@ -27,6 +29,8 @@ const vuetify = createVuetify({
 const app = createApp({
     components: {
         Component,
+        Doctors,
+        Medicine,
         Appointments,
     },
 });
