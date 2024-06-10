@@ -31,13 +31,13 @@
             <v-card-title>{{ selectedMedicine.name }}</v-card-title>
             <v-card-text>
               <p><strong>Code:</strong> {{ selectedMedicine.code }}</p>
-              <p><strong>DCI :</strong> {{ selectedMedicine.dci1 }}</p>
+              <p><strong>DCI:</strong> {{ selectedMedicine.dci1 }}</p>
               <p><strong>Dosage:</strong> {{ selectedMedicine.dosage1 }} {{ selectedMedicine.unit_dosage1 }}</p>
               <p><strong>Forme:</strong> {{ selectedMedicine.shape }}</p>
               <p><strong>Présentation:</strong> {{ selectedMedicine.presentation }}</p>
-              <p><strong>Télévision à la carte :</strong> {{ selectedMedicine.ppv }}</p>
+              <p><strong>PPV:</strong> {{ selectedMedicine.ppv }}</p>
               <p><strong>Prix:</strong> {{ selectedMedicine.price_br }}</p>
-              <p><strong>Taux de remboursement :</strong> {{ selectedMedicine.refund_rate }}</p>
+              <p><strong>Taux de remboursement:</strong> {{ selectedMedicine.refund_rate }}</p>
             </v-card-text>
             <v-card-actions>
               <v-btn color="primary" @click="showModal = false">Fermer</v-btn>
