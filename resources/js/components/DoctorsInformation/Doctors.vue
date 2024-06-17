@@ -8,17 +8,25 @@
           label="Search"
           @input="handleSearch"
         ></v-text-field>
-        <v-list>
-          <v-list-item
+        <v-row>
+          <v-col
             v-for="doctor in doctors"
             :key="doctor.id"
-            @click="selectDoctor(doctor)"
+            cols="12"
+            sm="6"
+            md="4"
           >
-            <v-list-item-content>
-              <v-list-item-title>{{ formatDoctorLabel(doctor) }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+            <v-card @click="selectDoctor(doctor)" class="doctor-card">
+              <v-card-title>{{ doctor.business_name }}</v-card-title>
+              <v-card-subtitle>{{ doctor.city }}, {{ doctor.country }}</v-card-subtitle>
+              <v-card-text>
+                <p><strong>Téléphone:</strong> {{ doctor.business_phone }}</p>
+                <p><strong>Taper:</strong> {{ doctor.type }}</p>
+                <p><strong>Catégorie:</strong> {{ doctor.category }}</p>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
         <v-pagination
           v-if="totalPages > 1"
           v-model="page"
@@ -94,16 +102,6 @@ export default {
       this.selectedDoctor = doctor;
       this.showModal = true;
     },
-    formatDoctorLabel(doctor) {
-      return [
-        doctor.business_name ? doctor.business_name + ', ' : '',
-        doctor.business_phone ? doctor.business_phone + ', ' : '',
-        doctor.type ? doctor.type + ', ' : '',
-        doctor.category ? doctor.category + ', ' : '',
-        doctor.city ? doctor.city + ', ' : '',
-        doctor.country
-      ].join('');
-    },
     handlePageChange(newPage) {
       this.page = newPage;
     },
@@ -119,8 +117,11 @@ export default {
 </script>
 
 <style scoped>
-.v-list-item {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+.doctor-card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.doctor-card:hover {
+  transform: scale(1.05);
 }
 </style>

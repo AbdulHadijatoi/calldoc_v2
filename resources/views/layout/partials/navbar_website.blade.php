@@ -112,9 +112,9 @@
                     <li>
                         <a href="{{url('/medicines')}}" class="{{ $activePage == 'medicines' ? 'text-primary' : 'text-black' }} block py-2 font-fira-sans pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('Medicines') }}</a>
                     </li>
-                    {{-- <li>
+                    <li>
                         <a href="{{url('/doctors-information')}}" class="{{ $activePage == 'doctors-information' ? 'text-primary' : 'text-black' }} block py-2 font-fira-sans pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('Doctors Information') }}</a>
-                    </li> --}}
+                    </li>
                     <li>
                         <a href="{{url('/our_blogs')}}" class="{{ $activePage == 'ourblogs' ? 'text-primary' : 'text-black' }} block py-2 font-fira-sans pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('Blog') }}</a>
                     </li>

@@ -9,6 +9,8 @@ class DoctorInformation extends Model
 {
     use HasFactory;
 
+    protected $table = 'doctors_information';
+    
     protected $fillable = [
         'query',
         'google_place_url',

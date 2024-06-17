@@ -433,7 +433,7 @@ Route::get('/prescription_recording/{prescription_id?}/{keycode?}',[Prescription
 Route::get('medicines',[MedicinesController::class,'index']);
 Route::get('medicines/get-data',[MedicinesController::class,'getData']);
 Route::get('doctors-information',[DoctorInformationController::class,'index']);
-Route::get('doctors-information/get-data',[MedicinesController::class,'getData']);
+Route::get('doctors-information/get-data',[DoctorInformationController::class,'getData']);
 Route::middleware(['auth'])->group(function ()
 {
     Route::post('/update_static_page',[SettingController::class,'update_static_page']);
